@@ -1,0 +1,71 @@
+<!-- <div>
+  <div *ngFor="let msg of messages">
+    <b>{{ msg.userId }}:</b> {{ msg.message }}
+  </div>
+  <div *ngIf="typingUser && typingUser !== currentUserId">
+    {{ typingUser }} is typing...
+  </div>
+  <input
+    type="text"
+    (input)="onTyping()"
+    (keydown.enter)="sendMessage()"
+    [(ngModel)]="message"
+  />
+</div> -->
+
+<!-- <div class="message-container">
+  <div
+    *ngFor="let msg of messages"
+    [ngClass]="{
+      left: msg.userId === 'user-vqc05qoln',
+      right: msg.userId === 'user-rbjr0xdt9'
+    }"
+  >
+    <b>{{ msg.userId }}:</b> {{ msg.message }}
+  </div>
+  <div
+    *ngIf="typingUser && typingUser !== currentUserId"
+    [ngClass]="{
+      left: typingUser === 'user-vqc05qoln',
+      right: typingUser === 'user-rbjr0xdt9'
+    }"
+  >
+    {{ typingUser }} is typing...
+  </div>
+
+  <input
+    type="text"
+    (input)="onTyping()"
+    (keydown.enter)="sendMessage()"
+    [(ngModel)]="message"
+  />
+</div> -->
+
+<div class="message-container">
+  <div
+    *ngFor="let msg of messages"
+    [ngClass]="{
+      left: msg.userId !== currentUserId,
+      right: msg.userId === currentUserId
+    }"
+  >
+    <b>{{ msg.userId }}:</b> {{ msg.message }}
+  </div>
+  <div
+    *ngIf="typingUser && typingUser !== currentUserId"
+    [ngClass]="{
+      left: typingUser !== currentUserId,
+      right: typingUser === currentUserId
+    }"
+  >
+    {{ typingUser }} is typing...
+  </div>
+
+  <!-- Input section for sending new messages -->
+  <input
+    type="text"
+    (input)="onTyping()"
+    (keydown.enter)="sendMessage()"
+    [(ngModel)]="message"
+  />
+</div>
