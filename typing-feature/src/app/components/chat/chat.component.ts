@@ -21,9 +21,13 @@ export class ChatComponent {
 
   constructor(private chatService: ChatService) {
     // Generate or retrieve a unique userId
+    // this.currentUserId =
+    //   localStorage.getItem('userId') || this.generateUniqueId();
+    // localStorage.setItem('userId', this.currentUserId);
+
     this.currentUserId =
-      localStorage.getItem('userId') || this.generateUniqueId();
-    localStorage.setItem('userId', this.currentUserId);
+      sessionStorage.getItem('userId') || this.generateUniqueId();
+    sessionStorage.setItem('userId', this.currentUserId);
   }
 
   ngOnInit() {
@@ -38,6 +42,7 @@ export class ChatComponent {
       } else {
         this.typingUser = null; // Clear the typing status when the user stops typing
       }
+      console.log('Current typingUser:', this.typingUser);
     });
 
     this.typingDebouncer.pipe(debounceTime(3000)).subscribe(() => {
